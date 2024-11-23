@@ -7,6 +7,7 @@ import { FaSearch } from "react-icons/fa";
 import SearchModal from "./searchbox";
 import { myContext } from "../../../Helper/Context";
 import { useRouter } from "next/navigation";
+import LongCat from "@/Components/Loader";
 const backend = process.env.NEXT_PUBLIC_API;
 function Page() {
   const [users, setusers] = useState([]);
@@ -49,7 +50,7 @@ function Page() {
     router.push("/login");
   }
   if (loading) {
-    return <>loading</>;
+    return <LongCat />;
   }
   async function handleClick(id, name) {
     setid((e) => {

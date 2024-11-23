@@ -10,6 +10,7 @@ function Login() {
   const { login, setLogin } = useContext(myContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setloading] = useState(true);
   const router = useRouter();
   // const changeState = ()=>
   // {
@@ -28,6 +29,7 @@ function Login() {
   }, []);
   async function changeState(e) {
     e.preventDefault();
+    setloading(false);
     var g = {
       username,
       password,
@@ -40,6 +42,7 @@ function Login() {
         // console.log(response.data);
         await localStorage.setItem("Token", response.data.token);
         //  console.log(data);
+        setloading(true);
         await router.push("/chats");
         return null;
       } else {
@@ -49,6 +52,7 @@ function Login() {
       alert(err);
       console.log(err);
     }
+    setloading(true);
   }
   return (
     <div className="s3">
@@ -103,12 +107,16 @@ function Login() {
         <a href="#" className="alt-f">
           Forgot Password ?
         </a>
-        <button
-          onClick={changeState}
-          className="hover:rounded-[2vw] rounded-[1vw]"
-        >
-          Sign in
-        </button>
+        {loading ? (
+          <button
+            onClick={changeState}
+            className="hover:rounded-[2vw] rounded-[1vw]"
+          >
+            Sign in
+          </button>
+        ) : (
+          <button className="hover:rounded-[2vw] rounded-[1vw]">Sign in</button>
+        )}
         <div href="#" className="alt-f-full">
           Not a Member yet?
           <button

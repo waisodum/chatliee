@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
+import LongCat from "./Loader";
 const backend = process.env.NEXT_PUBLIC_API;
 function Chat({ id, name }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [chatId, setChatid] = useState("");
   const [Token, setToken] = useState("");
+  const [messagechange, setmessagechange] = useState(true);
   const [socketConnected, setSocketConnected] = useState(false);
+  const [loading, setloading] = useState(true);
   const socketRef = useRef();
 
   useEffect(() => {
@@ -44,6 +47,7 @@ function Chat({ id, name }) {
       } catch (error) {
         console.log(error);
       }
+      setloading(false);
     };
     if (Token && id) fetchData();
   }, [id, Token]);
@@ -65,6 +69,11 @@ function Chat({ id, name }) {
   }, [id]);
 
   const handleSendMessage = async () => {
+    setmessagechange(false);
+    if (!newMessage.length > 0) {
+      setmessagechange(true);
+      return;
+    }
     try {
       const { data } = await axios.post(
         `${backend}/message/createMessage`,
@@ -75,9 +84,14 @@ function Chat({ id, name }) {
       socketRef.current.emit("new message", data);
       setNewMessage("");
     } catch (error) {
+      alert(error);
       console.error(error);
     }
+    setmessagechange(true);
   };
+  if (loading) {
+    return <LongCat />;
+  }
   return (
     <div class="flex-1">
       {/* <!-- Chat Header --> */}
@@ -98,7 +112,10 @@ function Chat({ id, name }) {
               </div>
             </div>
           ) : (
-            <div class="flex justify-end mb-4 cursor-pointer" key={message._id || index}>
+            <div
+              class="flex justify-end mb-4 cursor-pointer"
+              key={message._id || index}
+            >
               <div class="flex max-w-96 bg-indigo-500 text-white rounded-lg p-3 gap-3">
                 <p>{message.content}</p>
               </div>
@@ -124,12 +141,18 @@ function Chat({ id, name }) {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
           />
-          <button
-            class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"
-            onClick={handleSendMessage}
-          >
-            Send
-          </button>
+          {messagechange ? (
+            <button
+              class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"
+              onClick={handleSendMessage}
+            >
+              Send
+            </button>
+          ) : (
+            <button class="bg-indigo-300 text-white px-4 py-2 rounded-md ml-2">
+              Send
+            </button>
+          )}
         </div>
       </footer>
     </div>

@@ -6,10 +6,11 @@ import Select from "react-select";
 import gsap from "gsap";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import LongCat from "./Loader";
 const backend = process.env.NEXT_PUBLIC_API;
 function Register() {
   const { login, setLogin } = useContext(myContext);
-
+  const [loading, setloading] = useState(true);
   const [username, setUsername] = useState("");
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
@@ -19,6 +20,7 @@ function Register() {
 
   const changeLoginState = async (e) => {
     e.preventDefault();
+    setloading(false);
     var userData = {
       firstname: firstname,
       lastname: lastname,
@@ -46,6 +48,7 @@ function Register() {
         setlastname("");
         setPassword("");
         setUsername("");
+        setloading(true);
         return null;
       }
     } catch (err) {
@@ -64,7 +67,6 @@ function Register() {
       duration: 1,
     });
   }, []);
-
   return (
     <div className="s3">
       <div className="sign-header-section m-[10px] lg:m-[2vw]">
@@ -132,6 +134,7 @@ function Register() {
           Sign up
         </button>
       </form>
+      {!loading && <LongCat />}
     </div>
   );
 }

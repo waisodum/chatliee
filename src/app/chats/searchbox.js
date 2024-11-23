@@ -7,6 +7,7 @@ const SearchModal = ({ search, users, setusers }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setloading] = useState(false);
   const [added, setAdded] = useState([]);
   const modalRef = useRef(null);
   const inputRef = useRef(null);
@@ -39,13 +40,16 @@ const SearchModal = ({ search, users, setusers }) => {
       alert("Authentication token is missing");
       return;
     }
+    setloading(true);
     try {
       const { data } = await axios.get(
         `${backend}/search/?search=${searchQuery}`,
         { headers: { Authorization: token } }
       );
       setSearchResults(data);
+      setloading(false);
     } catch (err) {
+      setloading(false);
       alert("Internal Server Error");
       console.log(err);
       closeModal();
@@ -61,6 +65,7 @@ const SearchModal = ({ search, users, setusers }) => {
     const token = localStorage.getItem("Token");
     if (!token) {
       alert("Authentication token is missing");
+
       return;
     }
     console.log(res);
@@ -73,7 +78,7 @@ const SearchModal = ({ search, users, setusers }) => {
         },
         { headers: { Authorization: token } }
       );
-      setusers((prev)=>[...prev,res])
+      setusers((prev) => [...prev, res]);
     } catch (err) {
       console.log(err);
     }
@@ -110,10 +115,12 @@ const SearchModal = ({ search, users, setusers }) => {
                 className="w-full bg-transparent border-none focus:outline-none text-lg"
                 aria-label="Search input"
               />
-              <FaSearch
-                className="text-gray-400 mr-3 cursor-pointer"
-                onClick={searchUserName}
-              />
+              {!loading && (
+                <FaSearch
+                  className="text-gray-400 mr-3 cursor-pointer"
+                  onClick={searchUserName}
+                />
+              )}
               <button
                 onClick={closeModal}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
