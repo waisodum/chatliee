@@ -1,0 +1,6 @@
+body {
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    background: url("/login-side.jpg") no-repeat center;
+    background-size: cover;
+  }
