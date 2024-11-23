@@ -8,7 +8,7 @@ import SearchModal from "./searchbox";
 import { myContext } from "../../../Helper/Context";
 import { useRouter } from "next/navigation";
 const backend = process.env.NEXT_PUBLIC_API;
-function page() {
+function Page() {
   const [users, setusers] = useState([]);
   const { userData, setUserData } = useContext(myContext);
   const [loading, setloading] = useState(true);
@@ -119,4 +119,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

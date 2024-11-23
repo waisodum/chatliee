@@ -150,7 +150,7 @@ const SearchModal = ({ search, users, setusers }) => {
               ))}
               {searchQuery && searchResults.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
-                  "Click on Search icon to Search {searchQuery}"
+                  &quot;Click on Search icon to Search {searchQuery}&quot;
                 </div>
               )}
             </div>

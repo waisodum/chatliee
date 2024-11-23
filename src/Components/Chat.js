@@ -89,7 +89,7 @@ function Chat({ id, name }) {
       <div class="h-screen overflow-y-auto p-4 pb-36">
         {messages.map((message, index) =>
           message.sender == id ? (
-            <div class="flex mb-4 cursor-pointer">
+            <div class="flex mb-4 cursor-pointer" key={message._id || index}>
               <div class="w-9 h-9 rounded-full flex items-center justify-center mr-2">
                 {/* <img src="https://placehold.co/200x/ffa8e4/ffffff.svg?text=ʕ•́ᴥ•̀ʔ&font=Lato" alt="User Avatar" class="w-8 h-8 rounded-full"> */}
               </div>
@@ -98,7 +98,7 @@ function Chat({ id, name }) {
               </div>
             </div>
           ) : (
-            <div class="flex justify-end mb-4 cursor-pointer">
+            <div class="flex justify-end mb-4 cursor-pointer" key={message._id || index}>
               <div class="flex max-w-96 bg-indigo-500 text-white rounded-lg p-3 gap-3">
                 <p>{message.content}</p>
               </div>
