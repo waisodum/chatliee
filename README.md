@@ -31,7 +31,7 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone "https://github.com/waisodum/chatliee.git"
    cd <repository_folder>/frontend
    ```
 
