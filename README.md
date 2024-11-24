@@ -1,4 +1,4 @@
-# 💬 Chat App
+# 💬 Chatliee
 
 A sleek and modern real-time chat application for seamless communication. Built with **Next.js** for the frontend and **Node.js** for the backend, this app offers real-time messaging, responsive design, and secure authentication.
 
