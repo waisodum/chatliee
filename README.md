@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💬 Chat App
 
-## Getting Started
+A sleek and modern real-time chat application for seamless communication. Built with **Next.js** for the frontend and **Node.js** for the backend, this app offers real-time messaging, responsive design, and secure authentication.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **Real-time Messaging**: Smooth and fast communication.
+- **Responsive Design**: Optimized for all devices.
+- **Secure Backend**: JWT authentication and robust database integration.
+- **MongoDB Integration**: Reliable and scalable data storage.
+
+---
+
+## 🚀 Installation Guide
+
+Follow these steps to set up and run the project locally:
+
+---
+
+### Prerequisites
+Ensure you have the following installed:
+- **Node.js** (v16 or above)
+- **npm** or **yarn**
+- **MongoDB Atlas** (or local MongoDB instance)
+
+---
+
+### 🖥 Frontend Setup
+
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>/frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up the environment variables:
+   - Create a `.env.local` file in the `frontend` folder's root directory.
+   - Add the following content:
+     ```plaintext
+     NEXT_PUBLIC_API=http://localhost:8000
+     ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open your browser and navigate to:
+   ```plaintext
+   http://localhost:3000
+   ```
+
+---
+
+### 🔧 Backend Setup
+
+1. Clone the backend repository and navigate to the directory:
+   ```bash
+   git clone "https://github.com/waisodum/chatliee-backend.git"
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up the environment variables:
+   - Create a `.env` file in the `backend` folder's root directory.
+   - Add the following content:
+     ```plaintext
+     Uri=mongodb://<db_username>:<db_password>@ac-bvyyg4v-shard-00-00.1ripenz.mongodb.net:27017,ac-bvyyg4v-shard-00-01.1ripenz.mongodb.net:27017,ac-bvyyg4v-shard-00-02.1ripenz.mongodb.net:27017/?ssl=true&replicaSet=atlas-12s8c1-shard-0&authSource=admin&retryWrites=true&w=majority
+     Frontend=http://localhost:3000
+     JWT_SECRET=randomstring
+     ```
+
+4. Start the backend server:
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
+
+5. The backend server will be running at:
+   ```plaintext
+   http://localhost:8000
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── .env.local
+│   ├── package.json
+│   └── ...
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── .env
+│   ├── package.json
+│   └── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🌐 Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Frontend**: Next.js, Tailwind CSS,socketio
+- **Backend**: Node.js, Express.js,socketio
+- **Database**: MongoDB Atlas
+- **Authentication**: JSON Web Token (JWT)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✉️ Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For questions or feedback, reach out at [salman.iqureshi04@gmail.com].
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy Coding! 🚀
