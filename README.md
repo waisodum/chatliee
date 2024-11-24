@@ -129,7 +129,7 @@ Ensure you have the following installed:
 
 ## ✉️ Contact
 
-For questions or feedback, reach out at [salman.iqureshi04@gmail.com].
+For questions or feedback, reach out at salman.iqureshi04@gmail.com.
 
 ---
 
